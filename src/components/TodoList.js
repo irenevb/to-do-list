@@ -3,12 +3,12 @@ import React from "react";
 // importamos los components
 import Todo from './Todo'
 
-function TodoList({ todos }) {
+function TodoList({ todos, setTodos }) {
   return (
     <div className="todo-container">
       <ul className="todo-list">
         {todos.map(todo => (
-          <Todo text={todo.text} id={todo.id}/>
+          <Todo setTodos={setTodos} todos={todos} key={todo.id} text={todo.text} todo = {todo}/> // todo = {todo} para poder hacer scroll down en cada uno
         ))}
       </ul>
     </div>

@@ -1,12 +1,11 @@
 import React from "react";
 
-function Form({ setInputText, todos, setTodos, inputText }) {
+function Form({ setInputText, todos, setTodos, inputText, setCategory }) {
 
   // Puedo escribir código js y funciones
 
 
   const inputTextHandler = (e) => {
-    console.log(e.target.value);
     setInputText(e.target.value);
   };
 
@@ -17,7 +16,11 @@ function Form({ setInputText, todos, setTodos, inputText }) {
       {text: inputText, completed: false, id: Math.random() * 1000 } // mirar cómo crear ids únicos
     ]);
     setInputText("");
-  }
+  };
+
+  const setCategoryHandler = (e) => {
+    setCategory(e.target.value);
+  };
 
   return (
     <form>
@@ -26,7 +29,7 @@ function Form({ setInputText, todos, setTodos, inputText }) {
         <i className="fas fa-plus-square"></i>
       </button>
       <div className="select">
-        <select name="todos" className="filter-todo">
+        <select onChange={setCategoryHandler} name="todos" className="filter-todo">
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>

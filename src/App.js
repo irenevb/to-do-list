@@ -10,13 +10,20 @@ function App() {
   // States
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
-  const [category, setCategory] = useState("all"); // el default será all
-  const [todoByCat, setTodoByCat] = useState([]);
+  const [category, setCategory] = useState("all"); // el default será all, aquí recojo la cat por la q el usuario quiere filtrar
+  const [todoByCat, setTodoByCat] = useState([]); // se cogen de los todos únicamente los elementos por los que se quiere filtrar
+
+  // Ejecutar una sola vez del
+
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
 
   // Use effect
 
   useEffect(() => {
     todoByCatHandler();
+    saveLocalTodos();
   }, [todos,category]); // esta función arrow vacía solamente se va a ejecutar una vez, con el component first render
 
   // Puedo decirle que se vuelva a ejecutar más veces si le doy un valor a la array
@@ -35,6 +42,25 @@ function App() {
       default:
         setTodoByCat(todos);
         break;
+    }
+  };
+
+  // Guardar en local
+
+  const saveLocalTodos = () => {
+    if (localStorage.getItem('todos') === null){
+      localStorage.setItem('todos', JSON.stringify([]));
+    }else{
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  };
+
+  const getLocalTodos = () => {
+    if(localStorage.getItem('todos') === null){
+      localStorage.setItem('todos', JSON.stringify([]));
+    }else{
+      let todoLocal = JSON.parse(localStorage.getItem('todos'));
+      setTodos(todoLocal);
     }
   };
 

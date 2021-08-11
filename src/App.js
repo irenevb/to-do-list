@@ -13,7 +13,7 @@ function App() {
   const [category, setCategory] = useState("all"); // el default será all, aquí recojo la cat por la q el usuario quiere filtrar
   const [todoByCat, setTodoByCat] = useState([]); // se cogen de los todos únicamente los elementos por los que se quiere filtrar
 
-  // Ejecutar una sola vez del
+  // Ejecutar una sola vez
 
   useEffect(() => {
     getLocalTodos();

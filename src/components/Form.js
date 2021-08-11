@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 function Form({ setInputText, todos, setTodos, inputText, setCategory }) {
 
   // Puedo escribir código js y funciones
 
+  const [_id, setId] = useState(0);
 
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
@@ -13,8 +14,9 @@ function Form({ setInputText, todos, setTodos, inputText, setCategory }) {
     e.preventDefault();
     setTodos([
       ...todos, 
-      {text: inputText, completed: false, id: Math.random() * 1000 } // mirar cómo crear ids únicos
+      {text: inputText, completed: false, id: _id } // mirar cómo crear ids únicos
     ]);
+    setId(_id+1);
     setInputText("");
   };
 

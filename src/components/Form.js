@@ -1,10 +1,11 @@
 import React, {useState} from "react";
+import Select from "./Select";
 
-function Form({ setInputText, todos, setTodos, inputText, setCategory }) {
+function Form({ setInputText, todos, setTodos, inputText, setCategory,options }) {
 
   // Puedo escribir código js y funciones
 
-  const [_id, setId] = useState(0);
+  const [idUnique, setId] = useState(0);
 
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
@@ -14,9 +15,9 @@ function Form({ setInputText, todos, setTodos, inputText, setCategory }) {
     e.preventDefault();
     setTodos([
       ...todos, 
-      {text: inputText, completed: false, id: _id } // mirar cómo crear ids únicos
+      {text: inputText, completed: false, id: idUnique } // mirar cómo crear ids únicos
     ]);
-    setId(_id+1);
+    setId(idUnique+1);
     setInputText("");
   };
 
@@ -30,15 +31,11 @@ function Form({ setInputText, todos, setTodos, inputText, setCategory }) {
       <button onClick={submitTodoHandler} className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>
-      <div className="select">
-        <select onChange={setCategoryHandler} name="todos" className="filter-todo">
-          <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="uncompleted">Uncompleted</option>
-        </select>
-      </div>
+      <Select options={options} func={setCategoryHandler}/>
+      
     </form>
   );
 }
+// } renderizar los select con un json, o hacer un component select
 
 export default Form;

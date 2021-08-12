@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { OptionsProvider } from './contexts/options-context';
 
 ReactDOM.render(
   <React.StrictMode>
+    <OptionsProvider>
     <App />
+    </OptionsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

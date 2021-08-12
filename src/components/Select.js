@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from 'prop-types';
+import {OptionsContext} from "./../contexts/options-context"
 
-function Select({ options, func}) {
+function Select({func}) {
+    const Context = useContext(OptionsContext);
+    // const options = Context.options;
     const opciones= () => {
         return(
-        options.map(op => (
+        Context.options.map(op => (
             
             
                 <React.Fragment>
@@ -23,7 +26,6 @@ function Select({ options, func}) {
     );
 };
 Select.propTypes = {
-    options: PropTypes.array,
     func: PropTypes.func
 }
 

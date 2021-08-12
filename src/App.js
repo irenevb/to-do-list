@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import "./App.css";
 import data from "./data/select.json";
+import { OptionsContext } from "./contexts/options-context";
 
 // importing components
 
@@ -13,8 +14,10 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [category, setCategory] = useState("all"); // el default será all, aquí recojo la cat por la q el usuario quiere filtrar
   const [todoByCat, setTodoByCat] = useState([]); // se cogen de los todos únicamente los elementos por los que se quiere filtrar
-  const [options,setOptions] = useState([]);
+  // const [options,setOptions] = useState([]);
   // Ejecutar una sola vez
+
+  const Context = useContext(OptionsContext);
 
   useEffect(() => {
     getLocalTodos();
@@ -24,7 +27,8 @@ function App() {
       options.push(op);
     }
     );
-    setOptions(options);
+    // setOptions(options);
+    Context.setOptions(options);
   }, []);
 
   // Use effect
@@ -86,7 +90,6 @@ function App() {
         setTodos={setTodos}
         setInputText={setInputText}
         setCategory={setCategory}
-        options={options}
       />
       <TodoList setTodos={setTodos} todos={todos} todoByCat={todoByCat}/>
     </div>

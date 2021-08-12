@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Select from "./Select";
 
-function Form({ setInputText, todos, setTodos, inputText, setCategory,options }) {
+function Form({ setInputText, todos, setTodos, inputText, setCategory}) {
 
   // Puedo escribir código js y funciones
 
@@ -31,7 +31,7 @@ function Form({ setInputText, todos, setTodos, inputText, setCategory,options })
       <button onClick={submitTodoHandler} className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>
-      <Select options={options} func={setCategoryHandler}/>
+      <Select func={setCategoryHandler}/>
       
     </form>
   );
